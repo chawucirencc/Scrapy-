@@ -24,9 +24,9 @@ class DyttPipeline(object):
             db_curs.executemany(insert_sql, data)
             db.commit()
             print("ok")
-        except:
+        except Exception as err:
             db.rollback()
-            print("insert error")
+            print(err)
         db_curs.close()
-        print("This is a message")
+        # print("This is a message")
         return item
