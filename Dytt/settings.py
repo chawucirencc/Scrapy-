@@ -68,8 +68,8 @@ DOWNLOAD_DELAY = 2
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   # 'Dytt.pipelines.DyttPipeline': 300,
-   'Dytt.pipelines.Dyttpipeline_redis': 301,
+   'Dytt.pipelines.DyttPipeline': 300,
+   'Dytt.pipelines.DyttPipeline_redis': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

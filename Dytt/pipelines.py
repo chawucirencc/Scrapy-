@@ -30,7 +30,7 @@ class DyttPipeline(object):
         select_sql = 'select movie_name FROM dytt_1'
         db_curs.execute(select_sql)
         result = db_curs.fetchall()
-        print(len(result))
+        print('mysql:', len(result))
         db_curs.close()
         return item
 
@@ -50,5 +50,5 @@ class DyttPipeline_redis(object):
         r.lpush('movie_name', item['movie_name'])        
         # print(len(r.lrange('movie_name', 0, -1)))
         r.lpush('movie_url', item['movie_url'])
-        print(len(r.lrange('movie_url', 0, -1)))
+        print('redis:', len(r.lrange('movie_url', 0, -1)))
         return item
