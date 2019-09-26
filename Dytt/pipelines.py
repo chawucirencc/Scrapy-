@@ -6,6 +6,7 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
 import redis
+import pymongo
 
 
 class DyttPipeline(object):
@@ -52,3 +53,19 @@ class DyttPipeline_redis(object):
         r.lpush('movie_url', item['movie_url'])
         print('redis:', len(r.lrange('movie_url', 0, -1)))
         return item
+
+
+class DyttPipeline_MongoDB(object):
+    def process_item(self, item, spider):
+        """
+        将结果数据写入到 MongoDB 数据库中...
+        """
+        try:
+            myclient = pymongo.MongoClient('localhost', 27017)
+            mydb = myclient.world   # 不存在会新建一个数据库
+            result = mydb.dytt_mongodb  # 不存在的话也会新建一个集合
+            result.insert({'movie_name': item['movie_name'],
+             'movie_date': item['movie_date'], 'movie_url': item['movie_url']})
+            print('ok')
+        except Exception as err:
+            print(err)
