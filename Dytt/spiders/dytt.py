@@ -61,3 +61,4 @@ class DyttSpider(scrapy.Spider):
         item = response.meta["item"]
         yield item
         pass
+    
